@@ -1,47 +1,81 @@
+
+#include <cstring>
 #include<stdio.h>
 #include<algorithm>
 using namespace std;
+struct bign
+{
+	int d[21];
+	int len;
+	bign()
+	{
+		memset(d,0,sizeof(d));
+		len = 0;
+	}
+};
+bign change(char str[])
+{
+	bign a;
+	a.len = strlen(str);
+	for(int i = 0;i < a.len; ++i)
+	{
+		a.d[i] = str[a.len - i - 1] - '0';
+	}
+	return a;
+}
+bign multi(bign a,int b)
+{
+	bign c;
+	int carry = 0;
+	for(int i = 0;i < a.len; ++i)
+	{
+		int temp = a.d[i] * b + carry;
+		c.d[c.len++] = temp % 10;
+		carry = temp / 10;
+	}
+	while(carry != 0)
+	{
+		c.d[c.len++] = carry % 10;
+		carry /= 10;
+	}
+	return c ;
+}
+int judge(bign a,bign b)
+{
+	sort(a.d,a.d + a.len);
+	sort(b.d,b.d + b.len);
+	if(a.len != b.len)
+		return 0;
+	else
+	{
+		for(int i=0;i<a.len;++i)
+			if(a.d[i] != b.d[i])
+				return 0;
+		return 1;
+	}
+}
+void print(bign a)
+{
+	for(int i = a.len -1;i >= 0;--i)
+		printf("%d",a.d[i]);
+}
+
 int main()
 {
-	long long int num;
-	int a[21],b[21];
-	int len1 = 0;
-	scanf("%ld",&num);
-	long long int temp = 2 * num;
-	long long int temp2 = temp;
-	do
-	{
-		a[len1++] = num % 10;
-		num /= 10;
-	}while(num != 0);
-	int len2 = 0;
-	do
-	{
-		a[len2++] = temp % 10;
-		temp /= 10;
-	}while(temp != 0);
-	if(len1 != len2)
+	char str[21];
+	gets(str);
+	bign a = change(str);
+	bign b = multi(a,2);
+	if(judge(a,b)==0)
 	{
 		printf("No\n");
-		printf("%ld\n",temp2);
+		print(b);
 	}
 	else
 	{
-		sort(a,a+len1);
-		sort(b,b+len1);
-		for(int i = 0;i < len1;++i )
-		{
-			if(a[i] != b[i])
-			{
-				printf("No\n");
-				printf("%ld\n",temp2);
-				return 0;
-			}
-		}
 		printf("Yes\n");
-		printf("%ld\n",temp2);
+		print(b);
 	}
-
 	return 0;
 }
 
