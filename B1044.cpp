@@ -18,17 +18,12 @@ void init() {
 		for(int j = 1; j < 13;j++){
 			string str = tenDigit[i] +" "+ unitDigit[j];
 			numToStr[i * 13 + j] = str;
-			strToNum[str] = (i * 13 + j);
+			strToNum[str] = i * 13 + j;
 		}
 	}
 }
 int main(int argc, char** argv) {
 	init();
-//	string a;
-//	while(1){
-//		getline(cin,a);
-//		cout << strToNum[a] <<endl;
-//	}
 	int T;
 	scanf("%d", &T);
 	getchar();
