@@ -2,7 +2,7 @@
 #include <algorithm>
 using namespace std; 
 const int INF = 1000000000;
-const int MAXV = 200;//最大定点数
+const int MAXV = 200;//最大顶点数
 int n, m;
 int origin[MAXV][MAXV], dis[MAXV][MAXV];
 void Floyd(){
