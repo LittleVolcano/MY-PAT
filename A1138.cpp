@@ -25,7 +25,7 @@ node* create(int preL, int preR, int inL, int inR){
 	return root;
 }
 void postOrder(node* root){
-	if(root == NULL){//开始出错出在没写递归边界 
+	if(root == NULL||flag == false){//开始出错出在没写递归边界 
 		return;
 	}
 	postOrder(root->lchild);
