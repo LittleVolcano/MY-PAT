@@ -1,20 +1,15 @@
 #include <iostream>
-#include <vector>
-/* run this program using the console pauser or add your own getch, system("pause") or input loop */
-using namespace std;
-
+struct aa{
+	int r1;
+	double r2;
+	float r3;
+};
 int main() {
 	
-	
-	vector<int> vi;
-	for(int i = 1;i <=5;i++){
-		vi.push_back(i);
-	}
-	
-	
-	vector<int>::iterator it = vi.begin();
-	for(int i = 0;i < 5;i++){
-		printf("%d ",vi[0]);
-	}
+	printf("struct:%d\n",sizeof(aa));
+	printf("int:%d\n",sizeof(int));
+	printf("long int:%d\n",sizeof(long int));
+	printf("double:%d\n",sizeof(double));
+	printf("float:%d\n",sizeof(float));
 	return 0;
 }
